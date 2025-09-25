@@ -50,10 +50,10 @@
       let gl = null;
       let renderer = null;
       let scene = new Scene();
-      let Site1 = new Gltf2Node({url: 'media/site/site1.gltf'});
-      Site1.scale = [0.5, 0.5, 0.5]; // Try a larger scale
-      Site1.translation = [0, 0, 1]; // Place 1 meter in front of the camera
-      scene.addNode(Site1);
+      let Site2 = new Gltf2Node({url: 'media/Site-2/site2.gltf'});
+      Site2.scale = [0.5, 0.5, 0.5]; // Try a larger scale
+      Site2.translation = [0, 0, 1]; // Place 1 meter in front of the camera
+      scene.addNode(Site2);
       // Still adding a skybox, but only for the benefit of the inline view.
       let skybox = new SkyboxNode({url: 'media/textures/eilenriede-park-2k.png'});
       scene.addNode(skybox);
