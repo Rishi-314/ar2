@@ -1,24 +1,4 @@
 <!doctype html>
-<!--
-Copyright 2018 The Immersive Web Community Group
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
--->
 <html>
   <head>
     <meta charset='utf-8'>
@@ -29,12 +9,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link rel='icon' type='image/png' sizes='96x96' href='favicon-96x96.png'>
     <link rel='stylesheet' href='css/common.css'>
 
-    <title>Immersive AR Session</title>
+    <title>Ancient Jain Heritages</title>
   </head>
   <body>
     <header>
       <details open>
-        <summary>Immersive AR Session</summary>
+        <summary>Ancient Jain Heritages</summary>
         <p>
           This sample demonstrates how to use an 'immersive-ar' XRSession to
           present a simple WebGL scene to a transparent or passthrough XR
@@ -70,13 +50,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       let gl = null;
       let renderer = null;
       let scene = new Scene();
-      let solarSystem = new Gltf2Node({url: 'media/site/site1.gltf'});
-      solarSystem.scale = [1, 1, 1]; // Try a larger scale
-      solarSystem.translation = [0, 0, 1]; // Place 1 meter in front of the camera
-      scene.addNode(solarSystem);
+      let Site1 = new Gltf2Node({url: 'media/site/site1.gltf'});
+      Site1.scale = [0.5, 0.5, 0.5]; // Try a larger scale
+      Site1.translation = [0, 0, 1]; // Place 1 meter in front of the camera
+      scene.addNode(Site1);
       // Still adding a skybox, but only for the benefit of the inline view.
-      let skybox = new SkyboxNode({url: 'media/textures/milky-way-4k.png'});
+      let skybox = new SkyboxNode({url: 'media/textures/eilenriede-park-2k.png'});
       scene.addNode(skybox);
+
+      // Add this before initXR()
+      const arStartSound = new Audio('media/sound/drums.ogg');
 
       function initXR() {
         xrButton = new WebXRButton({
@@ -100,6 +83,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       }
 
       function onRequestSession() {
+        // Play sound when AR button is pressed
+        arStartSound.play();
+
         // Requests an 'immersive-ar' session, which ensures that the users
         // environment will be visible either via video passthrough or a
         // transparent display. This may be presented either in a headset or
